@@ -62,3 +62,25 @@ export default function AvailablePlaces({ onSelectPlace }) {
     />
   );
 }
+
+
+//  navigator.geolocation.getCurrentPosition((position) => {
+//           if (position) {
+//             const sortedPlaces = sortPlacesByDistance(
+//               resData.places,
+//               position.coords.latitude,
+//               position.coords.longitude
+//             )
+
+//             setAvailablePlaces(sortedPlaces)
+//             setIsLoading(false)
+//           } else {
+//             setAvailablePlaces(resData.places)
+//             setIsLoading(false)
+//           }
+//         });
+//       } catch (err) {
+//         setError(err)
+//         setIsLoading(false)
+//       }
+//     }

@@ -5,6 +5,7 @@ import Modal from './components/Modal.jsx';
 import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import AvailablePlaces from './components/AvailablePlaces.jsx';
+import { updateUserPlaces } from './http.js'
 
 function App() {
   const selectedPlace = useRef();
@@ -22,7 +23,7 @@ function App() {
     setModalIsOpen(false);
   }
 
-  function handleSelectPlace(selectedPlace) {
+  async function handleSelectPlace(selectedPlace) {
     setUserPlaces((prevPickedPlaces) => {
       if (!prevPickedPlaces) {
         prevPickedPlaces = [];
@@ -32,6 +33,13 @@ function App() {
       }
       return [selectedPlace, ...prevPickedPlaces];
     });
+
+    try {
+      // You can't just use the state, because this function belongs to the 'old' component, before the reload
+    await updateUserPlaces([selectedPlace, ...userPlaces])
+    } catch(err) {
+      //
+    }
   }
 
   const handleRemovePlace = useCallback(async function handleRemovePlace() {
